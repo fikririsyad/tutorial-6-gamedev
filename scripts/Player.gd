@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-@export var speed: int = 400
-@export var GRAVITY: int = 1000
-@export var jump_speed: int = -600
-
 const UP = Vector2(0, -1)
+
+@export var speed: int = 400
+@export var gravity: int = 1000
+@export var jump_speed: int = -600
 
 @onready var animator = self.get_node("Animator")
 @onready var sprite = self.get_node("Sprite2D")
@@ -21,7 +21,7 @@ func get_input():
 
 
 func _physics_process(delta):
-	velocity.y += delta * GRAVITY
+	velocity.y += delta * gravity
 	get_input()
 	set_velocity(velocity)
 	set_up_direction(UP)
@@ -29,7 +29,7 @@ func _physics_process(delta):
 	velocity = velocity
 
 
-func _process(delta):
+func _process():
 	if velocity.y != 0:
 		animator.play("Jump")
 	elif velocity.x != 0:

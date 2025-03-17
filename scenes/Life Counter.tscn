@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi5p7oo2kwxi3"]
+
+[ext_resource type="Script" path="res://scripts/Lives.gd" id="1_dh6m0"]
+[ext_resource type="FontFile" uid="uid://g0e4g4332ft0" path="res://assets/Fonts/Raw/CC Wild Words Roman.ttf" id="1_y7vuq"]
+
+[node name="LifeCounter" type="MarginContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_y7vuq")
+theme_override_font_sizes/font_size = 24
+script = ExtResource("1_dh6m0")

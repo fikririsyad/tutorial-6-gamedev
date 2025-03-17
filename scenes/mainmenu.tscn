@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2xfnv5r1cyvf"]
+[gd_scene load_steps=6 format=3 uid="uid://c2xfnv5r1cyvf"]
 
-[ext_resource type="FontFile" uid="uid://g0e4g4332ft0" path="res://assets/Fonts/Raw/CC Wild Words Roman.ttf" id="1_jn7ku"]
-[ext_resource type="FontFile" uid="uid://cth60gqdxo73p" path="res://assets/Fonts/Raw/continuum bold.ttf" id="2_i3lcq"]
-[ext_resource type="Texture2D" uid="uid://26wqrar1o8aw" path="res://icon.png" id="3_r3mlb"]
+[ext_resource type="FontFile" uid="uid://g0e4g4332ft0" path="res://assets/Fonts/Raw/CC Wild Words Roman.ttf" id="1_45d1m"]
+[ext_resource type="FontFile" uid="uid://cth60gqdxo73p" path="res://assets/Fonts/Raw/continuum bold.ttf" id="2_l8pgw"]
+[ext_resource type="Script" path="res://scripts/ChangeScene.gd" id="3_h22xm"]
+[ext_resource type="Texture2D" uid="uid://26wqrar1o8aw" path="res://icon.png" id="4_clcwp"]
+[ext_resource type="Script" path="res://scripts/ToggleStageSelect.gd" id="5_tel3x"]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchors_preset = 15
@@ -15,41 +17,89 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 230
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_jn7ku")
+theme_override_fonts/font = ExtResource("1_45d1m")
 theme_override_font_sizes/font_size = 100
 text = "JUDUL"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+[node name="MainMenuButtons" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="LinkButton" type="LinkButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="NewGameButton" type="LinkButton" parent="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
 theme_override_colors/font_hover_color = Color(0.192472, 0.603573, 0.576459, 1)
-theme_override_fonts/font = ExtResource("2_i3lcq")
+theme_override_fonts/font = ExtResource("2_l8pgw")
 theme_override_font_sizes/font_size = 24
-text = "New Button"
+text = "New Game"
+script = ExtResource("3_h22xm")
+scene_to_load = "Level 1"
 
-[node name="LinkButton2" type="LinkButton" parent="HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="StageSelectButton" type="LinkButton" parent="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
 theme_override_colors/font_hover_color = Color(0.192472, 0.603573, 0.576459, 1)
-theme_override_fonts/font = ExtResource("2_i3lcq")
+theme_override_fonts/font = ExtResource("2_l8pgw")
 theme_override_font_sizes/font_size = 24
 text = "Stage Select"
+script = ExtResource("5_tel3x")
+
+[node name="StageSelectButtons" type="VBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Level1Button" type="LinkButton" parent="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.192472, 0.603573, 0.576459, 1)
+theme_override_fonts/font = ExtResource("2_l8pgw")
+theme_override_font_sizes/font_size = 24
+text = "Level 1"
+script = ExtResource("3_h22xm")
+scene_to_load = "Level 1"
+
+[node name="Level2Button" type="LinkButton" parent="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.192472, 0.603573, 0.576459, 1)
+theme_override_fonts/font = ExtResource("2_l8pgw")
+theme_override_font_sizes/font_size = 24
+text = "Level 2"
+script = ExtResource("3_h22xm")
+scene_to_load = "Level 2"
+
+[node name="BackToMenuButton" type="LinkButton" parent="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.729412, 0, 1)
+theme_override_colors/font_hover_color = Color(0.192472, 0.603573, 0.576459, 1)
+theme_override_fonts/font = ExtResource("2_l8pgw")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+script = ExtResource("5_tel3x")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("3_r3mlb")
+texture = ExtResource("4_clcwp")
 stretch_mode = 5
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons/NewGameButton" to="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons/NewGameButton" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons/StageSelectButton" to="HBoxContainer/MarginContainer/VBoxContainer/MainMenuButtons/StageSelectButton" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/Level1Button" to="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/Level1Button" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/Level2Button" to="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/Level2Button" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/BackToMenuButton" to="HBoxContainer/MarginContainer/VBoxContainer/StageSelectButtons/BackToMenuButton" method="_on_pressed"]
