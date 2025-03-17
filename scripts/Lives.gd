@@ -1,5 +1,5 @@
 extends Label
 
 
-func _process():
+func _process(_delta):
 	self.text = "Lives : " + str(Global.lives)
